@@ -32,6 +32,7 @@ function handleResponse(res, err, result) {
     }
 }
 
+
 //CURSOS
 
 app.get('/clase', (req, res) => {

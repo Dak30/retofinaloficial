@@ -1,0 +1,262 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 17-11-2023 a las 00:09:12
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `curso`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clase`
+--
+
+CREATE TABLE `clase` (
+  `ID` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `Prerrequisito` varchar(50) NOT NULL,
+  `Creditos` int(11) NOT NULL,
+  `Cupos` int(11) NOT NULL,
+  `IDProfesor` int(11) DEFAULT NULL,
+  `IDEstudiante` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `clase`
+--
+
+INSERT INTO `clase` (`ID`, `Nombre`, `Prerrequisito`, `Creditos`, `Cupos`, `IDProfesor`, `IDEstudiante`) VALUES
+(8, 'Introduccion Ingenieria', '', 2, 2, NULL, NULL),
+(21, 'Introduccion Ingenieria ll', '', 2, 2, NULL, NULL),
+(25, 'Derecho Romano', '', 2, 2, NULL, NULL),
+(26, 'Introduccion de Derecho', '', 3, 2, NULL, NULL),
+(27, 'Fundamentos de Administracion', '', 4, 2, NULL, NULL),
+(28, 'Principios de Derecho y Constitucion Politica', '', 4, 2, NULL, NULL),
+(29, 'Biofisica', '', 3, 2, NULL, NULL),
+(30, 'Biologia', '', 2, 3, NULL, NULL),
+(31, 'Introduccion Ingenieria', '', 2, 2, NULL, NULL),
+(32, 'Derecho Romano', '', 2, 3, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudiante`
+--
+
+CREATE TABLE `estudiante` (
+  `ID` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `Apellido` varchar(50) NOT NULL,
+  `Facultad` varchar(50) NOT NULL,
+  `Creditos` int(11) NOT NULL,
+  `Semestre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `estudiante`
+--
+
+INSERT INTO `estudiante` (`ID`, `Nombre`, `Apellido`, `Facultad`, `Creditos`, `Semestre`) VALUES
+(2, 'Moises', 'Karen', 'Ingenieria', 9, 7),
+(3, 'Moises', 'Karen', 'Ingenieria', 9, 7),
+(4, 'Juan Sebastian ', 'Otoño Nariño', 'Derecho, Ciencias Politicas y Sociales', 5, 1),
+(5, 'Juan Sebastian	', 'Otoño Nariño', 'Derecho, Ciencias Politicas y Sociales', 5, 1),
+(6, 'Nicolas', 'Niño', 'Ciencias Economicas, Administracion y Contables', 6, 4),
+(7, 'Juan', 'Kerty', 'Ciencias Economicas, Administracion y Contables', 8, 8),
+(12, 'Juan Sebastian', 'Diaz', 'Ciencias de la salud', 5, 2),
+(13, 'Juan Manuel', 'Santos', 'Ciencias de la salud', 5, 6),
+(14, 'Lionel', 'Messi', 'Ingenieria', 9, 7),
+(15, 'Andres', 'Iniesta', 'Derecho, Ciencias Politicas y Sociales', 6, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inscripciones`
+--
+
+CREATE TABLE `inscripciones` (
+  `ID` int(11) NOT NULL,
+  `IDEstudiante` int(11) NOT NULL,
+  `IDClase` int(11) NOT NULL,
+  `IDProfesor` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inscripciones`
+--
+
+INSERT INTO `inscripciones` (`ID`, `IDEstudiante`, `IDClase`, `IDProfesor`) VALUES
+(1, 2, 8, 8),
+(2, 3, 21, 10),
+(3, 4, 25, 11),
+(4, 5, 26, 13),
+(5, 6, 27, 14),
+(6, 7, 28, 15),
+(7, 12, 29, 16),
+(8, 13, 30, 17),
+(9, 14, 31, 18),
+(10, 15, 32, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `login`
+--
+
+CREATE TABLE `login` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Lastname` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`ID`, `Name`, `Lastname`, `Email`, `Password`) VALUES
+(5, 'Santiago Nicolas', 'Acevedo Jimenez', 'prueba2@gmail.com', 'Dak678jdhbs'),
+(6, 'Lola', 'Osorio', 'prueba3@hotmail.com', 'Dajhdbvc567'),
+(7, 'Hoyu', 'Quiroga', 'hoyuq@outlook.es', 'Dak%chess30k'),
+(8, 'Jjulian', 'Jkobn', 'prueba13@prueba.com', 'Dak%yudin3'),
+(9, 'Santiago', 'Baez', 'dwen@hotmail.es', 'Dajhfdbdcd&jh43'),
+(13, 'Nicol Maria', 'Juarez Pita', 'nicol@outlok.es', 'Dfhdsg%67');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `profesor`
+--
+
+CREATE TABLE `profesor` (
+  `ID` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `Apellido` varchar(50) NOT NULL,
+  `TituloA` varchar(50) NOT NULL,
+  `Añosexpe` int(11) NOT NULL,
+  `Nombrecurso` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `profesor`
+--
+
+INSERT INTO `profesor` (`ID`, `Nombre`, `Apellido`, `TituloA`, `Añosexpe`, `Nombrecurso`) VALUES
+(8, 'Juan Manuel', 'Saenz Diaz', 'Lincenciatura de Sistemas', 20, 'Introduccion Ingenieria'),
+(10, 'Juan Manuel', 'Saenz Diaz', 'Lincenciatura de Sistemas', 20, 'Introduccion Ingenieria'),
+(11, 'Kevin', 'Saenz', 'Lincenciatura de Derecho y Abogado', 25, 'Derecho Romano'),
+(13, 'Sebastian', 'Leguizamon', 'Lincenciatura de Derecho', 7, 'Introduccion de Derecho'),
+(14, 'Katty', 'Jimenez', 'Lincenciatura Administracion', 30, 'Fundamentos de Administracion'),
+(15, 'Ben', 'Shelton', 'Lincenciatura de Ciencias Politicas', 12, 'Principios de Derecho y Constitucion Politica	'),
+(16, 'Laura', 'Perez', 'Lincenciatura de Ciencias Naturales', 13, 'Biofisica'),
+(17, 'Novak ', 'Djokovic', 'Lincencitura de Ciencias de la Salud', 4, 'Biologia'),
+(18, 'Juan Manuel	', 'Saenz Diaz', 'Lincenciatura de Sistemas', 20, 'Introduccion Ingenieria'),
+(19, 'Kevin ', 'Saenz', 'Lincenciatura de Derecho', 25, 'Derecho Romano');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `clase`
+--
+ALTER TABLE `clase`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `fk_clase_profesor` (`IDProfesor`),
+  ADD KEY `fk_clase_estudiante` (`IDEstudiante`);
+
+--
+-- Indices de la tabla `estudiante`
+--
+ALTER TABLE `estudiante`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `inscripciones`
+--
+ALTER TABLE `inscripciones`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDEstudiante` (`IDEstudiante`),
+  ADD KEY `IDClase` (`IDClase`),
+  ADD KEY `fk_inscripciones_profesor` (`IDProfesor`);
+
+--
+-- Indices de la tabla `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `profesor`
+--
+ALTER TABLE `profesor`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `clase`
+--
+ALTER TABLE `clase`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `estudiante`
+--
+ALTER TABLE `estudiante`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `login`
+--
+ALTER TABLE `login`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `profesor`
+--
+ALTER TABLE `profesor`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `clase`
+--
+ALTER TABLE `clase`
+  ADD CONSTRAINT `fk_clase_estudiante` FOREIGN KEY (`IDEstudiante`) REFERENCES `estudiante` (`ID`),
+  ADD CONSTRAINT `fk_clase_profesor` FOREIGN KEY (`IDProfesor`) REFERENCES `profesor` (`ID`);
+
+--
+-- Filtros para la tabla `inscripciones`
+--
+ALTER TABLE `inscripciones`
+  ADD CONSTRAINT `fk_inscripciones_profesor` FOREIGN KEY (`IDProfesor`) REFERENCES `profesor` (`ID`),
+  ADD CONSTRAINT `inscripciones_ibfk_1` FOREIGN KEY (`IDEstudiante`) REFERENCES `estudiante` (`ID`),
+  ADD CONSTRAINT `inscripciones_ibfk_2` FOREIGN KEY (`IDClase`) REFERENCES `clase` (`ID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
