@@ -9,7 +9,7 @@ en la página phpMyAdmin con el local 8080: https://github.com/Dak30/retofinalof
 
 Después, abre CMD en Visual Studio Code y ejecuta los siguientes comandos:
 1. Ejecuta `npm run dev` con el archivo reto-final.
-2. Ejecuta `node servercursos` con el archivo server.
+2. Ejecuta `node servercursos.js` con el archivo server.
 
 
 
